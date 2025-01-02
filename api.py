@@ -2,16 +2,21 @@ from nba_api.stats.static import players
 from nba_api.stats.endpoints import playercareerstats
 from flask import Flask, jsonify
 from flask_cors import CORS
+import requests
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for cross-origin requests
 
-from flask_caching import Cache
+@app.route('/api/lebron_static', methods=['GET'])
+def lebron_static():
+    player = players.get_players_by_team('Los Angeles Lakers')
+    lebron = [p for p in player if p['full_name'] == 'LeBron James'][0]
 
-app.config['CACHE_TYPE'] = 'simple'
-cache = Cache(app)
+    return jsonify({
+        "player": lebron['full_name'],
+        "team": lebron['team']['full_name']
+    })
 
-@cache.cached(timeout=600)
 @app.route('/api/lebron_stats', methods=['GET'])
 def lebron_stats():
     # Fetch LeBron James' stats    
