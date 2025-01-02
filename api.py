@@ -12,9 +12,7 @@ def lebron_stats():
     player = players.find_players_by_full_name('LeBron James')[0]
     player_id = player['id']
     
-    timeout = Timeout(60)  # Increase timeout to 60 seconds
-
-    career = playercareerstats.PlayerCareerStats(player_id=player_id, timeout = timeout)
+    career = playercareerstats.PlayerCareerStats(player_id=player_id)
     data = career.get_dict()
 
     # Get career total points
