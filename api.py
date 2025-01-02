@@ -8,11 +8,8 @@ CORS(app)  # Enable CORS for cross-origin requests
 
 @app.route('/api/lebron_stats', methods=['GET'])
 def lebron_stats():
-    # Fetch LeBron James' stats
-    player = players.find_players_by_full_name('LeBron James')[0]
-    player_id = player['id']
-    
-    career = playercareerstats.PlayerCareerStats(player_id=player_id)
+    # Fetch LeBron James' stats    
+    career = playercareerstats.PlayerCareerStats(player_id=2544)
     data = career.get_dict()
 
     # Get career total points
