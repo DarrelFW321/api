@@ -7,7 +7,7 @@ import requests
 app = Flask(__name__)
 CORS(app)  # Enable CORS for cross-origin requests
         
-@app.route('/api/lebron_stats', methods=['GET'])
+@app.route('/', methods=['GET'])
 def lebron_stats():
     # Fetch LeBron James' stats    
     # career = playercareerstats.PlayerCareerStats(player_id=2544)
