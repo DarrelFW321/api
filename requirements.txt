@@ -1,3 +1,4 @@
 Flask
 flask-cors
 nba_api
+gunicorn
