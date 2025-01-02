@@ -6,6 +6,12 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)  # Enable CORS for cross-origin requests
 
+from flask_caching import Cache
+
+app.config['CACHE_TYPE'] = 'simple'
+cache = Cache(app)
+
+@cache.cached(timeout=600)
 @app.route('/api/lebron_stats', methods=['GET'])
 def lebron_stats():
     # Fetch LeBron James' stats    
