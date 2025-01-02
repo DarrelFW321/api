@@ -6,32 +6,22 @@ import requests
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for cross-origin requests
-
-@app.route('/api/lebron_static', methods=['GET'])
-def lebron_static():
-    player = players.get_players_by_team('Los Angeles Lakers')
-    lebron = [p for p in player if p['full_name'] == 'LeBron James'][0]
-
-    return jsonify({
-        "player": lebron['full_name'],
-        "team": lebron['team']['full_name']
-    })
-
+        
 @app.route('/api/lebron_stats', methods=['GET'])
 def lebron_stats():
     # Fetch LeBron James' stats    
-    career = playercareerstats.PlayerCareerStats(player_id=2544)
-    data = career.get_dict()
+    # career = playercareerstats.PlayerCareerStats(player_id=2544)
+    # data = career.get_dict()
 
-    # Get career total points
-    regular_season_career = data['resultSets'][1]
-    regular_season_points = regular_season_career['rowSet'][0][23]  # Points
-    postseason_career = data['resultSets'][3]
-    postseason_points = postseason_career['rowSet'][0][23]
+    # # Get career total points
+    # regular_season_career = data['resultSets'][1]
+    # regular_season_points = regular_season_career['rowSet'][0][23]  # Points
+    # postseason_career = data['resultSets'][3]
+    # postseason_points = postseason_career['rowSet'][0][23]
 
     return jsonify({
         "player": "LeBron James",
-        "career_points": regular_season_points + postseason_points
+        "career_points": "300" #regular_season_points + postseason_points
     })
 
 if __name__ == '__main__':
